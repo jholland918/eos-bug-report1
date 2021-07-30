@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants>EOS_PLATFORM_WINDOWS_64;$(DefineConstants);</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\EOS-SDK-CSharp-16972539-v1.13.1\SDK\Source\Core\**">
+      <Link>SDK\Core\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <Compile Include="..\..\EOS-SDK-CSharp-16972539-v1.13.1\SDK\Source\Generated\**">
+      <Link>SDK\Generated\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PreBuildEvent>
+      xcopy /D /Y /R /Q "$(MSBuildProjectDirectory)\..\..\EOS-SDK-CSharp-16972539-v1.13.1\SDK\Bin\EOSSDK-Win64-Shipping.dll" "$(MSBuildProjectDirectory)\bin\Debug\netcoreapp3.1"
+      xcopy /D /Y /R /Q "$(MSBuildProjectDirectory)\..\..\EOS-SDK-CSharp-16972539-v1.13.1\SDK\Bin\x64\xaudio2_9redist.dll" "$(MSBuildProjectDirectory)\bin\Debug\netcoreapp3.1"
+    </PreBuildEvent>
+  </PropertyGroup>
+  
+</Project>
